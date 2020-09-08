@@ -1,19 +1,33 @@
-#WebGL {
-  margin-top: 80px;
-}
-
-#wasd {
-  float: right;
-}
-
 .para-guide {
   display: block;
   margin-left: auto;
   margin-right: auto;
 }
 
-.slide-pic {
-  height: 400px;
-  width: 300px;
+@media (min-width: 768px) {
+  .slide-pic {
+    height: 400px;
+    width: 300px;
+  }
+}
+
+.div-left-space {
+  margin-left: 50px;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.footer {
+  position: relative;
+  height: 250px;
+  left: 0;
+  bottom: 0;
+  /*margin-bottom: 0;*/
+  width: 100%;
+  text-align: center;
 }
 
