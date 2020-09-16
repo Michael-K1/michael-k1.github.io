@@ -40,7 +40,9 @@
         </p>
         <p>Di queste figure si conosce solo la posizione nello spazio [x, y, z], non la forma, che verrà computata in tempo reale, e pertanto è necessario un modo per determinare la distanza della punta del raggio con le figure nel mondo che si vogliono
             rappresentare.<br><br></p>
-        <picture><img class="center" src="assets/img/theory/code/raymarch.png"></picture><p>L&#39;algoritmo richiede come Parametri:</p>
+    </div>
+    <div class="para-guide">
+        <h4>L'algoritmo<br></h4><p>L&#39;algoritmo richiede come Parametri:</p>
 <ul>
 <li><strong>rayOrigin</strong>: origine del raggio (la telecamera)</li>
 <li><strong>rayDirection</strong>: direzione del raggio</li>
@@ -55,9 +57,8 @@
 </ul>
 </li>
 </ul>
-</div>
-    <div class="para-guide">
-        <h4>L'algoritmo<br></h4>
+
+        <picture><img class="center" src="assets/img/theory/code/raymarch.png"></picture>
         <p><strong>Ɐ step</strong> del raggio, viene controllato se ha superato la sua distanza massima <strong>O</strong> la profondità di campo; se il risultato di questo controllo da esito positivo significa che il raggio non ha incontrato ostacoli sul
             suo percorso, pertanto non è necessario calcolare il colore del pixel e l'algoritmo termina.<br><br>Se da esito negativo, viene aggiornata la posizione del raggio, che corrisponde alla posizione originale più un offset pari al vettore della
             direzione del raggio moltiplicato per la distanza <em>t</em> percorsa dal raggio.<br><br>Con questa nuova posizione (<em>pos</em>) viene calcolata la distanza <em>d</em> con la figura più vicina mediante la funzione <strong>distanceField</strong>;
@@ -133,7 +134,7 @@
         </div>
     </div>
     <div class="para-guide">
-        <h3>Algoritmo</h3>
+        <h4>Algoritmo</h4>
         <div class="container">
             <div class="row">
                 <div class="col-md-6">

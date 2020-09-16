@@ -11,6 +11,10 @@
   }
 }
 
+p:not(.foot) {
+  text-align: justify;
+}
+
 .div-left-space {
   margin-left: 50px;
 }
@@ -29,5 +33,10 @@
   margin-bottom: 0;
   width: 100%;
   text-align: center;
+}
+
+div:not(.footer) {
+  word-wrap: break-word;
+  width: 90%;
 }
 
