@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>3D Fractals</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/css/Footer-Dark.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
@@ -23,24 +23,147 @@
             <div class="collapse navbar-collapse"
                 id="navcol-1">
                 <ul class="nav navbar-nav ml-auto">
-                    <li class="nav-item" role="presentation"><a class="nav-link active" href="#">Theory</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="guide.html">Guide</a></li>
-                    <li class="nav-item" role="presentation"><a class="nav-link" href="Fractals/fractals.html">Application</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#">Theory</a></li>
+                    <li class="nav-item"><a class="nav-link" href="guide.html">Guide</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Fractals/fractals.html">Application</a></li>
                 </ul>
             </div>
         </div>
     </nav>
+    <div class="para-guide">
+        <h2>RayMarching</h2>
+        <p>La tecnica del RayMarching consiste nello sparare un raggio <strong>per ogni</strong> pixel dell'immagine a schermo, lo si fa <em>marciare</em> in una direzione predeterminata e si verifica se la punta del raggio si interseca con una figura nello
+            spazio dell'applicazione; se <strong>non</strong> esiste un intersezione, il raggio viene prolungato nella stessa direzione per una distanza pari alla distanza che separa la punta del raggio dalla figura più vicina ad esso; se esiste una intersezione
+            in un determinato punto dello spazio tridimensionale, allora quel punto verrà colorato e illuminato per essere mostrato a schermo.<br><br>Per il RayMarching, viene selezionata una posizione per la telecamera, viene messa una griglia di fronte
+            ad essa e inviati raggi che, dalla telecamera, attraversano ogni casella della griglia, dove ogni casella rappresenta un pixel dell'immagine finale.<br>&nbsp;<br>
+            <picture class="border-dark"><img class="bg-light border-white center" src="assets/img/theory/raytrace.png"></picture>
+        </p>
+        <p>Di queste figure si conosce solo la posizione nello spazio [x, y, z], non la forma, che verrà computata in tempo reale, e pertanto è necessario un modo per determinare la distanza della punta del raggio con le figure nel mondo che si vogliono
+            rappresentare.<br><br></p>
+        <picture><img class="center" src="assets/img/theory/code/raymarch.png"></picture><p>L&#39;algoritmo richiede come Parametri:</p>
+<ul>
+<li><strong>rayOrigin</strong>: origine del raggio (la telecamera)</li>
+<li><strong>rayDirection</strong>: direzione del raggio</li>
+<li><strong>depth</strong>: profondita di campo per la visione</li>
+</ul>
+<p>e Costanti:</p>
+<ul>
+<li><strong>maxRayDistance</strong>: distanza massima che può percorrere il raggio</li>
+<li><strong>maxRaySteps</strong>: numero massimo di step che può eseguire il raggio</li>
+<li><strong>ACCURACY</strong>: distanza minima dalla figura per considerarla toccata dal raggio<ul>
+<li>questa costante è modificabile nell&#39;applicazione</li>
+</ul>
+</li>
+</ul>
+</div>
+    <div class="para-guide">
+        <h4>L'algoritmo<br></h4>
+        <p><strong>Ɐ step</strong> del raggio, viene controllato se ha superato la sua distanza massima <strong>O</strong> la profondità di campo; se il risultato di questo controllo da esito positivo significa che il raggio non ha incontrato ostacoli sul
+            suo percorso, pertanto non è necessario calcolare il colore del pixel e l'algoritmo termina.<br><br>Se da esito negativo, viene aggiornata la posizione del raggio, che corrisponde alla posizione originale più un offset pari al vettore della
+            direzione del raggio moltiplicato per la distanza <em>t</em> percorsa dal raggio.<br><br>Con questa nuova posizione (<em>pos</em>) viene calcolata la distanza <em>d</em> con la figura più vicina mediante la funzione <strong>distanceField</strong>;
+            se la distanza è minore della <strong>ACCURACY</strong> significa che il raggio tocca la figura, quindi è possibile colorare e applicare luci ed ombre su quel pixel in quella posizione. Se invece non tocca nessuna figura, si incrementa la
+            distanza <em>t</em> percorsa e si ricomincia l'algoritmo con la nuova posizione della punta del raggio.<br><br>La funzione <strong>distanceField</strong> restituisce un vettore di 4 elementi [r, g, b, w]: i primi 3 rappresentano il colore
+            dell'oggetto, mentre <em>w</em> rappresenta la distanza tra raggio e figura più vicina.<br><br></p>
+    </div>
+    <div class="para-guide">
+        <h3>Signed&nbsp;Distance&nbsp;Function&nbsp;(SDF)<br></h3>
+        <p>Una SDF è una funzione che prende in input una posizione P nello spazio e restituisce la distanza tra il punto P e la figura che rappresenta, con il segno, poiché il segno indica se il punto P è fuori (<em>distanza positiva</em>), dentro (<em>distanza negativa</em>)
+            o sulla superficie (<em>distanza zero</em>) della figura.<br><br>Un esempio basilare è la SDF di una sfera dove la distanza tra punta del raggio e sfera è rappresentato dalla distanza del punto P dal centro della sfera&nbsp;<em>meno</em> il
+            raggio.<br><br></p>
+    </div>
+    <div class="para-guide">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <picture><img class="img-fluid center" src="assets/img/theory/sdfSphere.png"></picture>
+                </div>
+                <div class="col-md-6">
+                    <picture><img class="img-fluid center" src="assets/img/theory/code/sdfSphereCode.png"></picture>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="para-guide">
+        <p>Dato che <em>p</em>&nbsp;è un vettore è sufficiente prendere la lunghezza di esso per il calcolare la SDF.<br><br>In questi esempi possiamo vedere che i punti sono sulla superficie nel primo caso, dentro alla sfera nel secondo e fuori dalla sfera
+            nel terzo.<br></p>
+        <picture><img class="center" src="assets/img/theory/sdfSphere2.png"></picture>
+        <p>Dato che con le SDF è possibile stabilire la distanza esatta tra la punta del raggio e le figure che sono nel mondo, invece di incrementare la lunghezza del raggio di una dimensione fissa relativamente piccola, per evitare di entrare dentro una
+            figura, è possibile prolungare il raggio di una distanza massima pari alla distanza che divide la punta dalla figura più vicina, evitando così di attraversare la superficie. <br><br>Questa tecnica di tracciamento del raggio è chiamata <em>Sphere Tracing.&nbsp;</em><br><br>Nella
+            prima figura,&nbsp;<em>p0</em> rappresenta la telecamera e la linea blu rappresenta la direzione del raggio. Nel primo step viene calcolata la distanza minima tra la telecamera e la superficie della scena; siccome il punto sulla superficie
+            più vicino a <em>p0</em> non ostacola il raggio, è possibile farlo marciare ancora fino a raggiungere una superficie in <em>p4</em>.<br>&nbsp;</p>
+    </div>
+    <div class="para-guide">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <picture><img class="img-fluid center" src="assets/img/theory/spheretrace.jpg"></picture>
+                </div>
+                <div class="col-md-6">
+                    <picture><img class="img-fluid center" src="assets/img/theory/raymarching-min.gif"></picture>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="para-guide">
+        <p>Nella funzione <strong>distanceField</strong> utilizzata nell'algoritmo visto in precedenza, sono raggruppate le SDF dei frattali che si possono rappresentare con questa applicazione.<br></p>
+    </div>
+    <hr style="background: #ff0000;">
+    <div class="para-guide">
+        <h2>Frattali 3D<br></h2><p>Cos&#39;è un frattale? Un <strong>frattale</strong> è un oggetto geometrico dotato di omotetia interna: si ripete nella sua forma allo stesso modo su scale diverse, e dunque ingrandendo una qualunque sua parte si ottiene una figura simile all&#39;originale.<p>C&#39;è una differenza sostanziale tra un oggetto geometrico euclideo ed un frattale:</p>
+<ul>
+<li>Un oggetto euclideo si costruisce generalmente utilizzando una funzione sul piano cartesiano</li>
+<li>Un oggetto frattale si basa su un algoritmo, quindi un metodo che deve essere utilizzato per disegnare l&#39;oggetto.</li>
+</ul>
+<p>L&#39;algoritmo non è mai applicato una volta sola, ma è iterato un numero di volte teoricamente infinito; infatti ad ogni iterazione l&#39;oggetto si avvicina sempre di più al risultato finale (per approssimazione) e dopo un certo numero di iterazioni l&#39;occhio umano riesce più a distinguere le modifche <strong>O</strong> l&#39;hardware di un computer non è più in grado di migliorare ulteriormente il disegno.</p>I frattali possono essere definiti con delle SDF e quindi essere rappresentati con la tecnica del RayMarching.<br /><br /></p></div>
+    <div class="para-guide">
+        <h3>Tetraedro di Sierpinski</h3>
+        <p>Il&nbsp;triangolo&nbsp;di&nbsp;Sierpinski&nbsp;è&nbsp;un&nbsp;frattale&nbsp;basato&nbsp;su&nbsp;un&nbsp;triangolo&nbsp;equilatero,&nbsp;creato&nbsp;dividendolo&nbsp;in&nbsp;4&nbsp;triangoli&nbsp;più&nbsp;piccoli,&nbsp;rimuovendo&nbsp;il&nbsp;triangolo&nbsp;centrale&nbsp;e&nbsp;ripetendo&nbsp;i&nbsp;passi&nbsp;sui&nbsp;triangoli&nbsp;rimanenti.<br>Applicando&nbsp;questi&nbsp;passi&nbsp;nello&nbsp;spazio&nbsp;3D&nbsp;si&nbsp;viene&nbsp;a&nbsp;creare&nbsp;un&nbsp;tetraedro&nbsp;formato&nbsp;da&nbsp;4&nbsp;tetraedri&nbsp;minori&nbsp;con&nbsp;uno&nbsp;spazio&nbsp;vuoto&nbsp;al&nbsp;centro.<br>Nelle
+            figure è possibile vedere un esempio della creazione del triangolo di Sierpinski e un estrapolato dell'applicazione del tetraedro;&nbsp;&nbsp;</p>
+    </div>
+    <div class="para-guide">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <picture><img class="img-fluid center" src="assets/img/theory/Fractals/construction_of_Sierpinski_Triangle.gif"></picture>
+                </div>
+                <div class="col-md-6">
+                    <picture><img class="img-fluid center" src="assets/img/theory/Fractals/tetraSierp.png"></picture>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="para-guide">
+        <h3>Algoritmo</h3>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>L'algoritmo&nbsp;necessita&nbsp;di:<br></p>
+                    <ul>
+                        <li><em>pos&nbsp;</em>: posizione del raggio nello spazio 3D</li>
+                        <li><em>tetraIterations&nbsp;</em>: numero di iterazioni dell'algoritmo</li>
+                        <li><em>scale&nbsp;</em>: scala del frattale che ne definisce la dimensione</li>
+                    </ul>
+                    <p>Per cominciare vengono definiti i 4 vertici del tetraedro, con un offset dato dalla scala di rappresentazione.<br><strong>Ɐ iterazione</strong> vengono fatti confronti per stabilire quale vertice è il più vicino al punto.<br><br>Successivamente
+                        viene raddoppiato il vettore <em>pos</em> e sottratto il vettore che corrisponde al vertice più vicino.<br><br>Alla fine delle iterazioni, l'algoritmo restituisce la lunghezza del vettore <em>pos</em> divisa per l'elevamento a
+                        potenza di 2 con il numero totale di iterazioni. <br><br></p>
+                </div>
+                <div class="col-md-6">
+                    <picture><img class="img-fluid center" src="assets/img/theory/code/tetraCode.png"></picture>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="text-info footer-dark footer">
         <footer>
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6 item text">
                         <h3>Progetto di Geometria Computazionale</h3>
-                        <p>Michael Daniel Naguib<br>Mat. 923425<br>A.A. 2019/2020</p>
+                        <p class="foot">Michael Daniel Naguib<br>Mat. 923425<br>A.A. 2019/2020</p>
                     </div>
                     <div class="col-md-6 item text">
-                        <h3>Geometria Computazionale</h3><p>Prof. <a href="http://www.mat.unimi.it/users/alzati/personale/">Alberto Alzati</a></p>
-<p><a href="http://www.mat.unimi.it/users/alzati/Geometria_Computazionale_98-99/">Sito</a> Geometria Computazionale</p>
+                        <h3>Geometria Computazionale</h3><p class=foot>Prof. <a href="http://www.mat.unimi.it/users/alzati/personale/">Alberto Alzati</a></p>
+<p class=foot><a href="http://www.mat.unimi.it/users/alzati/Geometria_Computazionale_98-99/">Sito Geometria Computazionale</a></p>
 </div>
                 </div>
                 <div class="row">
