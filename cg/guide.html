@@ -96,8 +96,8 @@
     </div>
     <div class="div-left-space">
         <h3>Interfaccia</h3>
-        <picture><img class="img-thumbnail para-guide" src="assets/img/guide/menu1.png"></picture>
-        <p>L'interfaccia si presenta sulla destra dell'applicazione; in essa sono presenti 2 elementi principali:<br></p>
+        <picture><img class="img-thumbnail center" src="assets/img/guide/menu1.png"></picture>
+        <p>L'interfaccia è composta da:<br></p>
     </div>
     <ul class="div-left-space">
         <li>Un menù a tendina principale (<span style="text-decoration: underline;">in verde</span>), dove sono elencati e selezionabili l'ambiente e&nbsp; tutti i frattali disponibili.&nbsp;</li>
@@ -106,6 +106,17 @@
                 <li>La lista dei comandi è disponibile in lingua&nbsp;<strong>Inglese&nbsp;</strong>&nbsp;e <strong>Italiana.</strong></li>
             </ul>
         </li>
+        <li>Una <strong>checkbox </strong>sempre visibile che permette di attivare/disattivare il calcolo del piano.
+            <ul>
+                <li><strong><em>Nota</em></strong><em>: </em>è consigliato disabilitarlo per aumentare le risorse di calcolo disponibili se l'applicazione dovesse rallentare; estendendosi all'infinito, il piano è molto pesante da calcolare.</li>
+            </ul>
+        </li>
+        <li>Un contatore degli FPS (Frame per Second) in alto a sinistra.
+            <ul class="div-left-space">
+                <li>Più alto è il numero di frame, migliori saranno le prestazioni dell'applicazione.</li>
+            </ul>
+        </li>
+        <li>Una lista delle caratteristiche del computer su cui viene eseguita l'applicazione, in basso a sinistra.</li>
     </ul>
     <div>
         <div class="container">
@@ -135,7 +146,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 align-self-center">
-                    <p><strong>RayMarching</strong>: qui è possibile modificare il valore dell' <em>Accuracy,&nbsp;</em>come spiegato nell'algoritmo. Un minore valore indica un'accuratezza maggiore.&nbsp;</p>
+                    <p><strong>RayMarching</strong>: qui è possibile modificare il valore dell' <em>Accuracy,&nbsp;</em>come spiegato nell'algoritmo. Un minore valore indica un'accuratezza maggiore.&nbsp;<br><br><strong>NOTA: </strong>per diminuire l'impatto
+                        del calcolo dei frattali sul sistema è possibile impostare un' accuratezza più alta (come 0.05); tuttavia i contorni dei frattali saranno meno definiti e più rotondi.&nbsp;</p>
                 </div>
                 <div class="col-auto col-md-6"><img class="img-thumbnail center" src="assets/img/guide/menu2_ray.png"></div>
             </div>
