@@ -77,7 +77,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <picture><img class="img-fluid center" src="assets/img/theory/sdfSphere.png"></picture>
+                    <picture><img class="img-fluid center" src="assets/img/theory/Math/sdfSphere.png"></picture>
                 </div>
                 <div class="col-md-6">
                     <picture><img class="img-fluid center" src="assets/img/theory/code/sdfSphereCode.png"></picture>
@@ -88,7 +88,7 @@
     <div class="div-left-space">
         <p>Dato che <em>p</em>&nbsp;è un vettore è sufficiente prendere la lunghezza di esso per il calcolare la SDF.<br><br>In questi esempi possiamo vedere che i punti sono sulla superficie nel primo caso, dentro alla sfera nel secondo e fuori dalla sfera
             nel terzo.<br></p>
-        <picture><img class="center" src="assets/img/theory/sdfSphere2.png"></picture>
+        <picture><img class="center" src="assets/img/theory/Math/sdfSphere2.png"></picture>
         <p>Dato che con le SDF è possibile stabilire la distanza esatta tra la punta del raggio e le figure che sono nel mondo, invece di incrementare la lunghezza del raggio di una dimensione fissa relativamente piccola, per evitare di entrare dentro una
             figura, è possibile prolungare il raggio di una distanza massima pari alla distanza che divide la punta dalla figura più vicina, evitando così di attraversare la superficie. <br><br>Questa tecnica di tracciamento del raggio è chiamata <em>Sphere Tracing.&nbsp;</em><br><br>Nella
             prima figura,&nbsp;<em>p0</em> rappresenta la telecamera e la linea blu rappresenta la direzione del raggio. Nel primo step viene calcolata la distanza minima tra la telecamera e la superficie della scena; siccome il punto sulla superficie
@@ -100,8 +100,9 @@
                 <div class="col-md-6">
                     <picture><img class="img-fluid center" src="assets/img/theory/spheretrace.jpg"></picture>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 text-center">
                     <picture><img class="img-fluid center" src="assets/img/theory/raymarching-min.gif"></picture>
+                    <p class="text-center">Vista animata in 2D e 3D della tecnica.</p>
                 </div>
             </div>
         </div>
@@ -131,16 +132,17 @@
             <div class="row">
                 <div class="col-md-6 align-self-center">
                     <picture><img class="center slide-pic" src="assets/img/theory/Fractals/construction_of_Sierpinski_Triangle.gif"></picture>
+                    <p class="text-center">Costruzione del triangolo di Sierpinski.</p>
                 </div>
                 <div class="col-md-6 align-self-center">
                     <picture><img class="center slide-pic" src="assets/img/theory/Fractals/tetraSierp.png"></picture>
+                    <p class="text-center">Tetraedro calcolato dall'applicazione.</p>
                 </div>
             </div>
         </div>
     </div>
     <hr>
     <div class="div-left-space">
-        <h4>Algoritmo</h4>
         <div class="container">
             <div class="row">
                 <div class="col-md-6 align-self-center">
@@ -203,6 +205,57 @@
                 </div>
                 <div class="col-md-3 offset-3 align-self-center">
                     <picture><img class="center slide-pic" src="assets/img/theory/Fractals/pax4.png"></picture>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <div class="div-left-space">
+        <h3>Mandelbulb 3D</h3>
+        <p>L'insieme&nbsp;di&nbsp;Mandelbrot&nbsp;è&nbsp;l'insieme&nbsp;dei&nbsp;numeri&nbsp;complessi&nbsp;<em>c</em>&nbsp;tali&nbsp;per&nbsp;cui&nbsp;la&nbsp;successione di seguito è&nbsp;limitata.<br>
+            <picture><img class="img-fluid center" src="assets/img/theory/Math/brot.png"></picture>
+        </p>
+        <p>Poichè&nbsp;non&nbsp;esiste&nbsp;una&nbsp;forma&nbsp;canonica&nbsp;tridimensionale&nbsp;dell'insieme&nbsp;di&nbsp;Mandelbrot,&nbsp;non&nbsp;esistendo&nbsp;un&nbsp;corrispettivotridimensionale&nbsp;dello&nbsp;spazio&nbsp;bidimensionale&nbsp;dei
+            numeri&nbsp;complessi,&nbsp;si&nbsp;utilizza&nbsp;una&nbsp;combinazione&nbsp;di&nbsp;<em>quaternioni</em>&nbsp;e&nbsp;numeri&nbsp;<em>bi-complessi</em>&nbsp;per&nbsp;rappresentare&nbsp;questo&nbsp;insieme&nbsp;in&nbsp;4&nbsp;dimensioni,&nbsp;creando&nbsp;cosi&nbsp;il&nbsp;Mandelbulb.<br></p>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <picture><img class="center slide-pic" src="assets/img/theory/Fractals/brot.jpg"></picture>
+                    <p class="text-center">Insieme di Mandelbrot in 2D.</p>
+                </div>
+                <div class="col-md-6">
+                    <picture><img class="center slide-pic" src="assets/img/theory/Fractals/bulb.png"></picture>
+                    <p class="text-center">Mandelbulb calcolato nell'applicazione.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="div-left-space">
+        <p>La <em>SDF</em>&nbsp; usata nell'applicazione si basa sulla formula creata da <span style="text-decoration: underline;">Daniel White</span> e <span style="text-decoration: underline;">Paul Nylander</span> che utilizza le <em>coordinate sferiche</em>.<br>La
+            loro formula per la N-esima potenza del vettore <strong>v={x,y,z}</strong> in ℝ3 è:<br><br>
+            <picture><img class="center" src="assets/img/theory/Math/bulb1.png"></picture>
+        </p>
+        <p>con:<br>
+            <picture><img class="center" src="assets/img/theory/Math/bulb2.png"></picture>
+        </p>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 align-self-center">
+                    <p>L'algoritmo prende come parametri in ingresso:</p>
+                    <ul>
+                        <li><em>p</em>: posizione della punta del raggio.</li>
+                        <li><em>mandelIterations: numero di iterazioni per il calcolo del frattale.</em></li>
+                        <li><em>animateMandel</em>: applica un'animazione in cui il frattale si ripiega su se stesso.&nbsp;</li>
+                        <li><em>rotate</em>:&nbsp; applica una rotazione al frattale.</li>
+                        <li><em>alternative</em>: cambia l'uso delle funzioni di seno e coseno per creare un Mandelbulb alternativo.</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <picture><img class="img-fluid" src="assets/img/theory/code/bulbCode.png"></picture>
                 </div>
             </div>
         </div>
