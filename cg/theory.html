@@ -9,7 +9,9 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&amp;display=swap">
     <link rel="stylesheet" href="assets/fonts/ionicons.min.css">
     <link rel="stylesheet" href="assets/css/Footer-Dark.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/css/lightbox.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/css/swiper.min.css">
+    <link rel="stylesheet" href="assets/css/Lightbox-Gallery.css">
     <link rel="stylesheet" href="assets/css/Navigation-Clean.css">
     <link rel="stylesheet" href="assets/css/Navigation-with-Button.css">
     <link rel="stylesheet" href="assets/css/Simple-Slider.css">
@@ -36,7 +38,7 @@
             spazio dell'applicazione; se <strong>non</strong> esiste un intersezione, il raggio viene prolungato nella stessa direzione per una distanza pari alla distanza che separa la punta del raggio dalla figura più vicina ad esso; se esiste una intersezione
             in un determinato punto dello spazio tridimensionale, allora quel punto verrà colorato e illuminato per essere mostrato a schermo.<br><br>Per il RayMarching, viene selezionata una posizione per la telecamera, viene messa una griglia di fronte
             ad essa e inviati raggi che, dalla telecamera, attraversano ogni casella della griglia, dove ogni casella rappresenta un pixel dell'immagine finale.<br>&nbsp;<br>
-            <picture class="border-dark"><img class="bg-light border-white center" src="assets/img/theory/raytrace.png"></picture>
+            <picture class="border-dark"><img class="img-thumbnail img-fluid bg-light border-white center" src="assets/img/theory/raytrace.png"></picture>
         </p>
         <p>Di queste figure si conosce solo la posizione nello spazio [x, y, z], non la forma, che verrà computata in tempo reale, e pertanto è necessario un modo per determinare la distanza della punta del raggio con le figure nel mondo che si vogliono
             rappresentare.<br><br></p>
@@ -77,7 +79,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <picture><img class="img-fluid center" src="assets/img/theory/Math/sdfSphere.png"></picture>
+                    <picture><img class="img-thumbnail img-fluid center" src="assets/img/theory/Math/sdfSphere.png"></picture>
                 </div>
                 <div class="col-md-6">
                     <picture><img class="img-fluid center" src="assets/img/theory/code/sdfSphereCode.png"></picture>
@@ -88,7 +90,7 @@
     <div class="div-left-space">
         <p>Dato che <em>p</em>&nbsp;è un vettore è sufficiente prendere la lunghezza di esso per il calcolare la SDF.<br><br>In questi esempi possiamo vedere che i punti sono sulla superficie nel primo caso, dentro alla sfera nel secondo e fuori dalla sfera
             nel terzo.<br></p>
-        <picture><img class="center" src="assets/img/theory/Math/sdfSphere2.png"></picture>
+        <picture><img class="img-thumbnail img-fluid center" src="assets/img/theory/Math/sdfSphere2.png"></picture>
         <p>Dato che con le SDF è possibile stabilire la distanza esatta tra la punta del raggio e le figure che sono nel mondo, invece di incrementare la lunghezza del raggio di una dimensione fissa relativamente piccola, per evitare di entrare dentro una
             figura, è possibile prolungare il raggio di una distanza massima pari alla distanza che divide la punta dalla figura più vicina, evitando così di attraversare la superficie. <br><br>Questa tecnica di tracciamento del raggio è chiamata <em>Sphere Tracing.&nbsp;</em><br><br>Nella
             prima figura,&nbsp;<em>p0</em> rappresenta la telecamera e la linea blu rappresenta la direzione del raggio. Nel primo step viene calcolata la distanza minima tra la telecamera e la superficie della scena; siccome il punto sulla superficie
@@ -96,12 +98,12 @@
     </div>
     <div class="div-left-space">
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <picture><img class="img-fluid center" src="assets/img/theory/spheretrace.jpg"></picture>
+                    <picture><img class="img-thumbnail img-fluid center" src="assets/img/theory/spheretrace.jpg"></picture>
                 </div>
                 <div class="col-md-6 text-center">
-                    <picture><img class="img-fluid center" src="assets/img/theory/raymarching-min.gif"></picture>
+                    <picture><img class="img-thumbnail img-fluid center" src="assets/img/theory/raymarching-min.gif"></picture>
                     <p class="text-center">Vista animata in 2D e 3D della tecnica.</p>
                 </div>
             </div>
@@ -131,11 +133,11 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 align-self-center">
-                    <picture><img class="center slide-pic" src="assets/img/theory/Fractals/construction_of_Sierpinski_Triangle.gif"></picture>
+                    <picture><img class="img-thumbnail img-fluid center slide-pic" src="assets/img/theory/Fractals/construction_of_Sierpinski_Triangle.gif"></picture>
                     <p class="text-center">Costruzione del triangolo di Sierpinski.</p>
                 </div>
                 <div class="col-md-6 align-self-center">
-                    <picture><img class="center slide-pic" src="assets/img/theory/Fractals/tetraSierp.png"></picture>
+                    <picture><img class="img-thumbnail img-fluid center slide-pic" src="assets/img/theory/Fractals/tetraSierp.png"></picture>
                     <p class="text-center">Tetraedro calcolato dall'applicazione.</p>
                 </div>
             </div>
@@ -156,77 +158,76 @@
                         viene raddoppiato il vettore <em>pos</em> e sottratto il vettore che corrisponde al vertice più vicino.<br><br>Alla fine delle iterazioni, l'algoritmo restituisce la lunghezza del vettore <em>pos</em> divisa per l'elevamento a
                         potenza di 2 con il numero totale di iterazioni. <br><br></p>
                 </div>
-                <div class="col-md-6">
-                    <picture><img class="img-fluid center" src="assets/img/theory/code/tetraCode.png"></picture>
-                </div>
+                <div class="col-md-6"><a href="assets/img/theory/code/tetraCode.png" data-lightbox="code"><img class="img-fluid" src="assets/img/theory/code/tetraCode.png"></a></div>
             </div>
         </div>
     </div>
     <hr>
     <div class="div-left-space">
         <h3>Paxis</h3>
-        <picture><img class="center" src="assets/img/theory/code/paxisCode2.png"></picture>
-        <p>Questo frattale utilizza come parametri:</p>
-        <ol>
-            <li><em>pos</em>: la posizione del raggio nello spazio 3D.</li>
-            <li><em>iter1 </em>e <em>iter2</em>: il numero di iterazioni per i 2 insiemi di operazioni.</li>
-            <li><em>mult</em>: un moltiplicatore che controlla la dimensione degli spazi vuoti nel frattale
-                <ul>
-                    <li>un valore troppo elevato farà sparire il frattale.</li>
-                </ul>
-            </li>
-            <li><em>swapA </em>e&nbsp;<em>swapB</em>: permettono di scambiare le funzioni utilizzate all'interno dei due cicli.<br>
-                <ul>
-                    <li>sono possibili 4 combinazioni distinte che producono il medesimo numero di frattali distinti.</li>
-                </ul>
-            </li>
-            <li><em>scale</em>: stabilisce la dimensione finale del frattale.</li>
-            <li><em>paxisAnimate</em>: attiva/disattiva l'animazione del frattale.</li>
-        </ol>
+    </div>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 align-self-center">
+                    <p>Questo frattale utilizza come parametri:</p>
+                    <ul>
+                        <li><em>pos</em>: la posizione del raggio nello spazio 3D.</li>
+                        <li><em>iter1 </em>e <em>iter2</em>: il numero di iterazioni per i 2 insiemi di operazioni.</li>
+                        <li><em>mult</em>: un moltiplicatore che controlla la dimensione degli spazi vuoti nel frattale
+                            <ul>
+                                <li>un valore troppo elevato farà sparire il frattale.</li>
+                            </ul>
+                        </li>
+                        <li><em>swapA </em>e&nbsp;<em>swapB</em>: permettono di scambiare le funzioni utilizzate all'interno dei due cicli.<br>
+                            <ul>
+                                <li>sono possibili 4 combinazioni distinte che producono il medesimo numero di frattali distinti.</li>
+                            </ul>
+                        </li>
+                        <li><em>scale</em>: stabilisce la dimensione finale del frattale.</li>
+                        <li><em>paxisAnimate</em>: attiva/disattiva l'animazione del frattale.</li>
+                    </ul>
+                </div>
+                <div class="col-md-6"><a href="assets/img/theory/code/paxisCode2.png" data-lightbox="code"><img class="img-fluid" src="assets/img/theory/code/paxisCode2.png"></a></div>
+            </div>
+        </div>
+    </div>
+    <div class="div-left-space">
         <p>La creazione di 4 frattali distinti dipende da due funzioni simili che usano come parametro una posizione <em>p</em>:<br><br>
-            <picture><img class="center" src="assets/img/theory/code/paxisCode1.png"></picture>
+            <picture><img class="img-fluid center" src="assets/img/theory/code/paxisCode1.png"></picture>
         </p>
         <p>Le due funzioni <strong>paxis </strong>ricevono come parametro in ingresso una vettore&nbsp;<em>p</em>, ne prendono il vettore assoluto e restituiscono il prodotto tra la normalizzazione di <em>p</em>&nbsp;con il segno e il massimo tra, un vettore
             di zeri e la normalizzazione del vettore assoluto meno, il <strong>massimo </strong>in un caso e il <strong>minimo </strong>nell'altro, il vettore assoluto riordinato in due modi distinti.&nbsp;</p>
     </div>
     <div>
         <div class="container">
-            <div class="row">
-                <div class="col-md-3 align-self-center">
-                    <picture><img class="center slide-pic" src="assets/img/theory/Fractals/pax1.png"></picture>
-                </div>
-                <div class="col-md-3 offset-3 align-self-center">
-                    <picture><img class="center slide-pic" src="assets/img/theory/Fractals/pax2.png"></picture>
-                </div>
+            <div class="row justify-content-center align-items-center">
+                <div class="col-md-3"><a href="assets/img/theory/Fractals/pax1.png" data-lightbox="paxis"><img class="img-thumbnail img-fluid" src="assets/img/theory/Fractals/pax1.png"></a></div>
+                <div class="col-md-3"><a href="assets/img/theory/Fractals/pax2.png" data-lightbox="paxis"><img class="img-thumbnail img-fluid" src="assets/img/theory/Fractals/pax2.png"></a></div>
+                <div class="col-md-3"><a href="assets/img/theory/Fractals/pax3.png" data-lightbox="paxis"><img class="img-thumbnail img-fluid" src="assets/img/theory/Fractals/pax3.png"></a></div>
+                <div class="col-md-3"><a href="assets/img/theory/Fractals/pax4.png" data-lightbox="paxis"><img class="img-thumbnail img-fluid" src="assets/img/theory/Fractals/pax4.png"></a></div>
             </div>
-            <div class="row">
-                <div class="col-md-3 align-self-center">
-                    <picture><img class="center slide-pic" src="assets/img/theory/Fractals/pax3.png"></picture>
-                </div>
-                <div class="col-md-3 offset-3 align-self-center">
-                    <picture><img class="center slide-pic" src="assets/img/theory/Fractals/pax4.png"></picture>
-                </div>
-            </div>
+            <p class="text-center">Render dei 4 frattali calcolabili con le combinazioni di <em>SwapA </em>e <em>SwapB</em>.</p>
         </div>
     </div>
     <hr>
     <div class="div-left-space">
         <h3>Mandelbulb 3D</h3>
         <p>L'insieme&nbsp;di&nbsp;Mandelbrot&nbsp;è&nbsp;l'insieme&nbsp;dei&nbsp;numeri&nbsp;complessi&nbsp;<em>c</em>&nbsp;tali&nbsp;per&nbsp;cui&nbsp;la&nbsp;successione di seguito è&nbsp;limitata.<br>
-            <picture><img class="img-fluid center" src="assets/img/theory/Math/brot.png"></picture>
+            <picture><img class="img-thumbnail img-fluid center" src="assets/img/theory/Math/brot.png"></picture>
         </p>
         <p>Poichè&nbsp;non&nbsp;esiste&nbsp;una&nbsp;forma&nbsp;canonica&nbsp;tridimensionale&nbsp;dell'insieme&nbsp;di&nbsp;Mandelbrot,&nbsp;non&nbsp;esistendo&nbsp;un&nbsp;corrispettivotridimensionale&nbsp;dello&nbsp;spazio&nbsp;bidimensionale&nbsp;dei
             numeri&nbsp;complessi,&nbsp;si&nbsp;utilizza&nbsp;una&nbsp;combinazione&nbsp;di&nbsp;<em>quaternioni</em>&nbsp;e&nbsp;numeri&nbsp;<em>bi-complessi</em>&nbsp;per&nbsp;rappresentare&nbsp;questo&nbsp;insieme&nbsp;in&nbsp;4&nbsp;dimensioni,&nbsp;creando&nbsp;cosi&nbsp;il&nbsp;Mandelbulb.<br></p>
     </div>
     <div>
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-md-6">
-                    <picture><img class="center slide-pic" src="assets/img/theory/Fractals/brot.jpg"></picture>
+                    <picture><img class="img-thumbnail img-fluid center slide-pic" src="assets/img/theory/Fractals/brot.jpg"></picture>
                     <p class="text-center">Insieme di Mandelbrot in 2D.</p>
                 </div>
                 <div class="col-md-6">
-                    <picture><img class="center slide-pic" src="assets/img/theory/Fractals/bulb.png"></picture>
+                    <picture><img class="img-thumbnail img-fluid center slide-pic" src="assets/img/theory/Fractals/bulb.png"></picture>
                     <p class="text-center">Mandelbulb calcolato nell'applicazione.</p>
                 </div>
             </div>
@@ -235,10 +236,10 @@
     <div class="div-left-space">
         <p>La <em>SDF</em>&nbsp; usata nell'applicazione si basa sulla formula creata da <span style="text-decoration: underline;">Daniel White</span> e <span style="text-decoration: underline;">Paul Nylander</span> che utilizza le <em>coordinate sferiche</em>.<br>La
             loro formula per la N-esima potenza del vettore <strong>v={x,y,z}</strong> in ℝ3 è:<br><br>
-            <picture><img class="center" src="assets/img/theory/Math/bulb1.png"></picture>
+            <picture><img class="img-thumbnail img-fluid center" src="assets/img/theory/Math/bulb1.png"></picture>
         </p>
         <p class="text-center">con:<br>
-            <picture><img class="center" src="assets/img/theory/Math/bulb2.png"></picture>
+            <picture><img class="img-thumbnail img-fluid center" src="assets/img/theory/Math/bulb2.png"></picture>
         </p>
     </div>
     <div>
@@ -254,9 +255,7 @@
                         <li><em>alternative</em>: cambia l'uso delle funzioni di seno e coseno per creare un Mandelbulb alternativo.</li>
                     </ul>
                 </div>
-                <div class="col-md-6">
-                    <picture><img class="img-fluid" src="assets/img/theory/code/bulbCode.png"></picture>
-                </div>
+                <div class="col-md-6"><a href="assets/img/theory/code/bulbCode.png" data-lightbox="code"><img class="img-fluid" src="assets/img/theory/code/bulbCode.png"></a></div>
             </div>
         </div>
     </div>
@@ -267,7 +266,7 @@
     </div>
     <div>
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-center">
                 <div class="col-md-6 align-self-center">
                     <p>La&nbsp;costruzione&nbsp;della&nbsp;<em>spugna</em>&nbsp;segue&nbsp;un&nbsp;semplice&nbsp;algoritmo:<br></p>
                     <ol>
@@ -279,14 +278,14 @@
                     <p>A lato è possibile osservare una rappresentazione animata dell'algoritmo che produce una spugna di Menger di livello 4 (l'algoritmo viene applicato 4 volte).</p>
                 </div>
                 <div class="col-md-6">
-                    <picture><img class="img-fluid" src="assets/img/theory/Fractals/Menger_sponge.gif"></picture>
+                    <picture><img class="img-thumbnail img-fluid" src="assets/img/theory/Fractals/Menger_sponge.gif"></picture>
                 </div>
             </div>
         </div>
     </div>
     <hr style="border-color: rgba(131,148,150,0);">
     <div class="div-left-space">
-        <picture><img class="center slide-pic" src="assets/img/theory/Fractals/sponge.png"></picture>
+        <picture><img class="img-thumbnail img-fluid center slide-pic" src="assets/img/theory/Fractals/sponge.png"></picture>
         <p class="text-center">Spugna di livello 6 creata dall'applicazione.</p>
     </div>
     <div>
@@ -303,12 +302,11 @@
                         i confronti viene incrementato il vettore della posizione e se la coordinata <em>z </em>risultasse negativa verrebbe incrementata.<br>Successivamente viene applicato uno spiazzamento pari al vettore unitario e applicata l'animazione
                         qual'ora fosse attiva.<br>In fine viene calcolata e restituita la distanza.</p>
                 </div>
-                <div class="col-md-6">
-                    <picture><img class="img-fluid" src="assets/img/theory/code/spongeCode.png"></picture>
-                </div>
+                <div class="col-md-6"><a href="assets/img/theory/code/spongeCode.png" data-lightbox="code"><img class="img-fluid" src="assets/img/theory/code/spongeCode.png"></a></div>
             </div>
         </div>
     </div>
+    <hr>
     <div class="text-info footer-dark footer">
         <footer>
             <div class="container-fluid">
@@ -330,6 +328,7 @@
     </div>
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.3.1/js/swiper.jquery.min.js"></script>
     <script src="assets/js/Simple-Slider.js"></script>
 </body>
