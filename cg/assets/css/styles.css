@@ -16,8 +16,9 @@ p:not(.foot) {
 }
 
 .div-left-space {
-  margin-left: 50px;
-  margin-right: 50px;
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .center {

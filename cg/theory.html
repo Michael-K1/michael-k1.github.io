@@ -33,7 +33,7 @@
         </div>
     </nav>
     <div class="div-left-space">
-        <h2>RayMarching</h2>
+        <h2 class="text-center">RayMarching</h2>
         <p>La tecnica del RayMarching consiste nel proiettare un raggio <strong>per ogni</strong> pixel dell'immagine a schermo, lo si fa <em>marciare</em> in una direzione predeterminata e si verifica se la punta del raggio si interseca con una figura nello
             spazio dell'applicazione; se <strong>non</strong> esiste un intersezione, il raggio viene prolungato nella stessa direzione per una distanza pari alla distanza che separa la punta del raggio dalla figura più vicina ad esso; se esiste una intersezione
             in un determinato punto dello spazio tridimensionale, allora quel punto verrà colorato e illuminato per essere mostrato a schermo.<br><br>Per il RayMarching, viene selezionata una posizione per la telecamera, viene messa una griglia di fronte
@@ -44,7 +44,7 @@
             rappresentare.<br><br></p>
     </div>
     <div class="div-left-space">
-        <h4>L'algoritmo<br></h4><p>L&#39;algoritmo richiede come Parametri:</p>
+        <h4 class="text-center">Algoritmo<br></h4><p>L&#39;algoritmo richiede come Parametri:</p>
 <ul>
 <li><strong>rayOrigin</strong>: origine del raggio (la telecamera)</li>
 <li><strong>rayDirection</strong>: direzione del raggio</li>
@@ -70,7 +70,7 @@
             dell'oggetto, mentre <em>w</em> rappresenta la distanza tra raggio e figura più vicina.<br><br></p>
     </div>
     <div class="div-left-space">
-        <h3>Signed&nbsp;Distance&nbsp;Function&nbsp;(SDF)<br></h3>
+        <h3 class="text-center">Signed&nbsp;Distance&nbsp;Function&nbsp;(SDF)<br></h3>
         <p>Una SDF è una funzione che prende in input una posizione P nello spazio e restituisce la distanza tra il punto P e la figura che rappresenta, con il segno, poiché il segno indica se il punto P è fuori (<em>distanza positiva</em>), dentro (<em>distanza negativa</em>)
             o sulla superficie (<em>distanza zero</em>) della figura.<br><br>Un esempio basilare è la SDF di una sfera dove la distanza tra punta del raggio e sfera è rappresentato dalla distanza del punto P dal centro della sfera&nbsp;<em>meno</em> il
             raggio.<br><br></p>
@@ -114,7 +114,7 @@
     </div>
     <hr style="background: #ff0000;">
     <div class="div-left-space">
-        <h2>Frattali 3D<br></h2>
+        <h2 class="text-center">Frattali 3D<br></h2>
         <p>Cos'è un frattale? Un <strong>frattale</strong> è un oggetto geometrico dotato di omotetia interna: si ripete nella sua forma allo stesso modo su scale diverse, e dunque ingrandendo una qualunque sua parte si ottiene una figura simile all'originale.
             <br>C'è una differenza sostanziale tra un oggetto geometrico euclideo ed un frattale:</p><ul>
     <li>Un oggetto euclideo si costruisce generalmente utilizzando una funzione sul piano cartesiano</li>
@@ -126,7 +126,7 @@
     </div>
     <hr>
     <div class="div-left-space">
-        <h3>Tetraedro di Sierpinski</h3>
+        <h3 class="text-center">Tetraedro di Sierpinski</h3>
         <p>Il&nbsp;triangolo&nbsp;di&nbsp;Sierpinski&nbsp;è&nbsp;un&nbsp;frattale&nbsp;basato&nbsp;su&nbsp;un&nbsp;triangolo&nbsp;equilatero,&nbsp;creato&nbsp;dividendolo&nbsp;in&nbsp;4&nbsp;triangoli&nbsp;più&nbsp;piccoli,&nbsp;rimuovendo&nbsp;il&nbsp;triangolo&nbsp;centrale&nbsp;e&nbsp;ripetendo&nbsp;i&nbsp;passi&nbsp;sui&nbsp;triangoli&nbsp;rimanenti.<br>Applicando&nbsp;questi&nbsp;passi&nbsp;nello&nbsp;spazio&nbsp;3D&nbsp;si&nbsp;viene&nbsp;a&nbsp;creare&nbsp;un&nbsp;tetraedro&nbsp;formato&nbsp;da&nbsp;4&nbsp;tetraedri&nbsp;minori&nbsp;con&nbsp;uno&nbsp;spazio&nbsp;vuoto&nbsp;al&nbsp;centro.<br>Nelle
             figure è possibile vedere un esempio della creazione del triangolo di Sierpinski e un estrapolato dell'applicazione del tetraedro.</p>
     </div>
@@ -166,7 +166,7 @@
     </div>
     <hr>
     <div class="div-left-space">
-        <h3>Paxis</h3>
+        <h3 class="text-center">Paxis</h3>
     </div>
     <div>
         <div class="container">
@@ -214,7 +214,7 @@
     </div>
     <hr>
     <div class="div-left-space">
-        <h3>Mandelbulb 3D</h3>
+        <h3 class="text-center">Mandelbulb 3D</h3>
         <p>L'insieme&nbsp;di&nbsp;Mandelbrot&nbsp;è&nbsp;l'insieme&nbsp;dei&nbsp;numeri&nbsp;complessi&nbsp;<em>c</em>&nbsp;tali&nbsp;per&nbsp;cui&nbsp;la&nbsp;successione di seguito è&nbsp;limitata.<br>
             <picture><img class="img-thumbnail img-fluid center" src="assets/img/theory/Math/brot.png"></picture>
         </p>
@@ -263,7 +263,7 @@
     </div>
     <hr>
     <div class="div-left-space">
-        <h3>Spugna di Menger</h3>
+        <h3 class="text-center">Spugna di Menger</h3>
         <p>La <strong>Spugna di Menger</strong> è una curva frattale, generalizzazione tridimensionale dell'<a href="https://en.wikipedia.org/wiki/Cantor_set">insieme monodimensionale di Cantor</a> e del <a href="https://en.wikipedia.org/wiki/Sierpi%C5%84ski_carpet">tappeto bidimensionale di Sierpinski</a>.</p>
     </div>
     <div>
@@ -310,7 +310,7 @@
     </div>
     <hr>
     <div class="div-left-space">
-        <h3>MandelBox</h3>
+        <h3 class="text-center">MandelBox</h3>
         <p>Il <strong>MandelBox</strong>&nbsp;è un frattale di forma scatolare, definito in modo similare all'insieme di Mandelbrot, ma a differenza di esso può essere esteso ad un numero infinito di dimensioni.<br><br>
             <picture><img class="img-thumbnail img-fluid center" src="assets/img/theory/Fractals/box.png"></picture>
         </p>
