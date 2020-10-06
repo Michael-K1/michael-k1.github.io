@@ -33,13 +33,28 @@
         </div>
     </nav>
     <div class="div-left-space">
+        <h2 class="text-center">Proiezioni</h2>
+        <p>Cos'è una <em>proiezione</em>? Una <em>proiezione</em> è una trasformazione lineare definita da uno spazio vettoriale in sè stesso, ovvero un <strong>endomorfismo</strong>, che risulta <strong>idempotente</strong>, ovvero applicando due volte
+            la trasformazione, il risultato ottenuto è identico ad applicarla una volta sola.<br><br>
+            <picture class="border-dark"><img class="img-thumbnail bg-light border-white center" src="assets/img/theory/projection/Projection.gif"></picture>
+        </p>
+        <p class="text-center">Esempio di proiezione.</p>
+        <h4 class="text-center">Proiezione Prospettica</h4>
+        <p>Una <strong>proiezione prospettica</strong>, usata nelle tecniche di <em>Raymarching</em> e <em>Raytracing</em>, simula la classica macchina fotografica e permette di rappresentare oggetti come noi li vediamo nella realtà.&nbsp;<br>Essa è caratterizzata
+            da raggi proiettanti non paralleli tra loro, ma contenuti in un cono ottico che li raccoglie in un punto di osservazione rappresentato dall'occhio umano.<br><br>
+            <picture class="border-dark"><img class="img-thumbnail bg-light border-white center" src="assets/img/theory/projection/perspective.gif"></picture>
+        </p>
+        <p class="text-center">Esempio di proiezione prospettica con <em>piano prospettico&nbsp;</em>(riquadro grigio) dove verrà rappresentata l'immagine.</p>
+    </div>
+    <div class="div-left-space">
         <h2 class="text-center">RayMarching</h2>
         <p>La tecnica del RayMarching consiste nel proiettare un raggio <strong>per ogni</strong> pixel dell'immagine a schermo, lo si fa <em>marciare</em> in una direzione predeterminata e si verifica se la punta del raggio si interseca con una figura nello
             spazio dell'applicazione; se <strong>non</strong> esiste un intersezione, il raggio viene prolungato nella stessa direzione per una distanza pari alla distanza che separa la punta del raggio dalla figura più vicina ad esso; se esiste una intersezione
             in un determinato punto dello spazio tridimensionale, allora quel punto verrà colorato e illuminato per essere mostrato a schermo.<br><br>Per il RayMarching, viene selezionata una posizione per la telecamera, viene messa una griglia di fronte
             ad essa e inviati raggi che, dalla telecamera, attraversano ogni casella della griglia, dove ogni casella rappresenta un pixel dell'immagine finale.<br>&nbsp;<br>
-            <picture class="border-dark"><img class="img-thumbnail img-fluid bg-light border-white center" src="assets/img/theory/raytrace.png"></picture>
+            <picture class="border-dark"><img class="img-thumbnail img-fluid bg-light border-white center" src="assets/img/theory/projection/raytrace.png"></picture>
         </p>
+        <p class="text-center">Proiezione prospettica di una figura sullo schermo mediante Raymarching.</p>
         <p>Di queste figure si conosce solo la posizione nello spazio [x, y, z], non la forma, che verrà computata in tempo reale, e pertanto è necessario un modo per determinare la distanza della punta del raggio con le figure nel mondo che si vogliono
             rappresentare.<br><br></p>
     </div>
@@ -99,10 +114,11 @@
     <div class="div-left-space">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-6">
+                <div class="col-md-6 align-self-baseline">
                     <picture><img class="img-thumbnail img-fluid center" src="assets/img/theory/spheretrace.jpg"></picture>
+                    <p class="text-center">Step compiuti dal raggio.</p>
                 </div>
-                <div class="col-md-6 text-center">
+                <div class="col-md-6 text-center align-self-baseline">
                     <picture><img class="img-thumbnail img-fluid center" src="assets/img/theory/raymarching-min.gif"></picture>
                     <p class="text-center">Vista animata in 2D e 3D della tecnica.</p>
                 </div>
