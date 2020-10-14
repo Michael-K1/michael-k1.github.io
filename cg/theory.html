@@ -32,14 +32,11 @@
             </div>
         </div>
     </nav>
+    <div class="border rounded border-primary sidenav"><a href="#perspective">Prospettiva</a><a href="#raymarching">RayMarching</a><a href="#sdf">SDF</a><a href="#fractals">Frattali 3D</a><a href="#tetrahedron">&nbsp; &nbsp; Tetraedro</a><a href="#paxis">&nbsp; &nbsp; Paxis</a><a href="#mandelbulb">&nbsp; &nbsp; Mandelbulb 3D</a>
+        <a
+            href="#sponge">&nbsp; &nbsp; Spugna</a><a href="#mandelbox">&nbsp; &nbsp; Mandelbox</a></div>
     <div class="div-left-space">
-        <h2 class="text-center">Proiezioni</h2>
-        <p>Cos'è una <em>proiezione</em>? Una <em>proiezione</em> è una trasformazione lineare definita da uno spazio vettoriale in sè stesso, ovvero un <strong>endomorfismo</strong>, che risulta <strong>idempotente</strong>, ovvero applicando due volte
-            la trasformazione, il risultato ottenuto è identico ad applicarla una volta sola.<br><br>
-            <picture class="border-dark"><img class="img-thumbnail bg-light border-white center" src="assets/img/theory/projection/Projection.gif"></picture>
-        </p>
-        <p class="text-center">Esempio di proiezione.</p>
-        <h4 class="text-center">Proiezione Prospettica</h4>
+        <h2 class="text-center" id="perspective">Proiezione Prospettica</h2>
         <p>Una <strong>proiezione prospettica</strong>, usata nelle tecniche di <em>Raymarching</em> e <em>Raytracing</em>, simula la classica macchina fotografica e permette di rappresentare oggetti come noi li vediamo nella realtà.&nbsp;<br>Essa è caratterizzata
             da raggi proiettanti non paralleli tra loro, ma contenuti in un cono ottico che li raccoglie in un punto di osservazione rappresentato dall'occhio umano.<br><br>
             <picture class="border-dark"><img class="img-thumbnail bg-light border-white center" src="assets/img/theory/projection/perspective.gif"></picture>
@@ -47,11 +44,12 @@
         <p class="text-center">Esempio di proiezione prospettica con <em>piano prospettico&nbsp;</em>(riquadro grigio) dove verrà rappresentata l'immagine.</p>
     </div>
     <div class="div-left-space">
-        <h2 class="text-center">RayMarching</h2>
+        <h2 class="text-center" id="raymarching">RayMarching</h2>
         <p>La tecnica del RayMarching consiste nel proiettare un raggio <strong>per ogni</strong> pixel dell'immagine a schermo, lo si fa <em>marciare</em> in una direzione predeterminata e si verifica se la punta del raggio si interseca con una figura nello
-            spazio dell'applicazione; se <strong>non</strong> esiste un intersezione, il raggio viene prolungato nella stessa direzione per una distanza pari alla distanza che separa la punta del raggio dalla figura più vicina ad esso; se esiste una intersezione
-            in un determinato punto dello spazio tridimensionale, allora quel punto verrà colorato e illuminato per essere mostrato a schermo.<br><br>Per il RayMarching, viene selezionata una posizione per la telecamera, viene messa una griglia di fronte
-            ad essa e inviati raggi che, dalla telecamera, attraversano ogni casella della griglia, dove ogni casella rappresenta un pixel dell'immagine finale.<br>&nbsp;<br>
+            spazio dell'applicazione; partendo dalla telecamera, si valuta la distanza minima tra la camera e l'oggetto più vicino e si prolunga il raggio di quella distanza, se <strong>non</strong> esiste un intersezione, il raggio viene prolungato nella
+            stessa direzione per una distanza pari alla distanza che separa la punta del raggio dalla figura più vicina ad esso; se esiste una intersezione in un determinato punto dello spazio tridimensionale, allora quel punto verrà colorato e illuminato
+            per essere mostrato a schermo.<br>Il procedimento termina comunque una volta superata una distanza massima predeterminata dalla telecamera.<br><br>Per il RayMarching, viene selezionata una posizione per la telecamera, viene messa una griglia
+            di fronte ad essa e inviati raggi che, dalla telecamera, attraversano ogni casella della griglia, dove ogni casella rappresenta un pixel dell'immagine finale.<br>&nbsp;<br>
             <picture class="border-dark"><img class="img-thumbnail img-fluid bg-light border-white center" src="assets/img/theory/projection/raytrace.png"></picture>
         </p>
         <p class="text-center">Proiezione prospettica di una figura sullo schermo mediante Raymarching.</p>
@@ -77,39 +75,37 @@
 </ul>
 
         <picture><img class="center" src="assets/img/theory/code/raymarch.png"></picture>
-        <p><strong>Ɐ step</strong> del raggio, viene controllato se ha superato la sua distanza massima <strong>O</strong> la profondità di campo; se il risultato di questo controllo da esito positivo significa che il raggio non ha incontrato ostacoli sul
-            suo percorso, pertanto non è necessario calcolare il colore del pixel e l'algoritmo termina.<br><br>Se da esito negativo, viene aggiornata la posizione del raggio, che corrisponde alla posizione originale più un offset pari al vettore della
-            direzione del raggio moltiplicato per la distanza <em>t</em> percorsa dal raggio.<br><br>Con questa nuova posizione (<em>pos</em>) viene calcolata la distanza <em>d</em> con la figura più vicina mediante la funzione <strong>distanceField</strong>;
-            se la distanza è minore della <strong>ACCURACY</strong> significa che il raggio tocca la figura, quindi è possibile colorare e applicare luci ed ombre su quel pixel in quella posizione. Se invece non tocca nessuna figura, si incrementa la
-            distanza <em>t</em> percorsa e si ricomincia l'algoritmo con la nuova posizione della punta del raggio.<br><br>La funzione <strong>distanceField</strong> restituisce un vettore di 4 elementi [r, g, b, w]: i primi 3 rappresentano il colore
-            dell'oggetto, mentre <em>w</em> rappresenta la distanza tra raggio e figura più vicina.<br><br></p>
+        <p>Ad ogni passo di avanzamento&nbsp;del raggio, viene controllato se ha superato la sua distanza massima; se il risultato di questo controllo da esito positivo significa che il raggio non ha incontrato ostacoli sul suo percorso, pertanto non è necessario
+            calcolare il colore del pixel e l'algoritmo termina.<br><br>Se da esito negativo, viene aggiornata la posizione del raggio, che corrisponde alla posizione originale più un incremento pari al vettore della direzione del raggio moltiplicato
+            per la distanza&nbsp;dall'oggetto più vicino.<br><br>Con questa nuova posizione (<em>pos</em>) viene calcolata la distanza <em>d</em> con la figura più vicina mediante la funzione <strong>distanceField</strong>; se la distanza è minore della
+            <strong>ACCURACY</strong> significa che il raggio tocca la figura, quindi è possibile colorare e applicare luci ed ombre su quel pixel in quella posizione. Se invece non tocca nessuna figura, si incrementa la distanza <em>t</em> percorsa e
+            si ricomincia l'algoritmo con la nuova posizione della punta del raggio.<br><br>La funzione <strong>distanceField</strong> restituisce un vettore di 4 elementi [r, g, b, w]: i primi 3 rappresentano il colore dell'oggetto, mentre <em>w</em>            rappresenta la distanza tra raggio e figura più vicina.<br><br></p>
     </div>
     <div class="div-left-space">
-        <h3 class="text-center">Signed&nbsp;Distance&nbsp;Function&nbsp;(SDF)<br></h3>
+        <h2 class="text-center" id="sdf">Signed&nbsp;Distance&nbsp;Function&nbsp;(SDF)<br></h2>
         <p>Una SDF è una funzione che prende in input una posizione P nello spazio e restituisce la distanza tra il punto P e la figura che rappresenta, con il segno, poiché il segno indica se il punto P è fuori (<em>distanza positiva</em>), dentro (<em>distanza negativa</em>)
-            o sulla superficie (<em>distanza zero</em>) della figura.<br><br>Un esempio basilare è la SDF di una sfera dove la distanza tra punta del raggio e sfera è rappresentato dalla distanza del punto P dal centro della sfera&nbsp;<em>meno</em> il
-            raggio.<br><br></p>
+            o sulla superficie (<em>distanza zero</em>) della figura.<br><br>Un esempio basilare è la SDF di una sfera dove la distanza tra la punta di un&nbsp; raggio P e una sfera è rappresentato dalla distanza del punto P dal centro della sfera&nbsp;<em>meno</em>            il raggio.<br><br></p>
     </div>
     <div class="div-left-space">
         <div class="container">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-md-6">
                     <picture><img class="img-thumbnail img-fluid center" src="assets/img/theory/Math/sdfSphere.png"></picture>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6 align-self-center">
                     <picture><img class="img-fluid center" src="assets/img/theory/code/sdfSphereCode.png"></picture>
+                    <p class="text-center"><br><em>p</em>&nbsp;rappresenta la distanza di P dal centro della sfera.<br><br></p>
                 </div>
             </div>
         </div>
     </div>
     <div class="div-left-space">
-        <p>Dato che <em>p</em>&nbsp;è un vettore è sufficiente prendere la lunghezza di esso per il calcolare la SDF.<br><br>In questi esempi possiamo vedere che i punti sono sulla superficie nel primo caso, dentro alla sfera nel secondo e fuori dalla sfera
-            nel terzo.<br></p>
+        <p>Nell'algoritmo <em>p</em>&nbsp;rappresenta la distanza di P dal centro della sfera.<br><br>In questi esempi possiamo vedere che i punti sono sulla superficie nel primo caso, dentro alla sfera nel secondo e fuori dalla sfera nel terzo.<br></p>
         <picture><img class="img-thumbnail img-fluid center" src="assets/img/theory/Math/sdfSphere2.png"></picture>
         <p>Dato che con le SDF è possibile stabilire la distanza esatta tra la punta del raggio e le figure che sono nel mondo, invece di incrementare la lunghezza del raggio di una dimensione fissa relativamente piccola, per evitare di entrare dentro una
             figura, è possibile prolungare il raggio di una distanza massima pari alla distanza che divide la punta dalla figura più vicina, evitando così di attraversare la superficie. <br><br>Questa tecnica di tracciamento del raggio è chiamata <em>Sphere Tracing.&nbsp;</em><br><br>Nella
-            prima figura,&nbsp;<em>p0</em> rappresenta la telecamera e la linea blu rappresenta la direzione del raggio. Nel primo step viene calcolata la distanza minima tra la telecamera e la superficie della scena; siccome il punto sulla superficie
-            più vicino a <em>p0</em> non ostacola il raggio, è possibile farlo marciare ancora fino a raggiungere una superficie in <em>p4</em>.<br>&nbsp;</p>
+            prima figura,&nbsp;<em>p0</em> rappresenta la telecamera e la linea blu rappresenta la direzione del raggio. Nel primo step viene calcolata la distanza minima tra la telecamera e la superficie della scena (bordo <em>nero</em>); siccome il
+            punto sulla superficie più vicino a <em>p0</em> non ostacola il raggio, è possibile farlo marciare ancora fino a raggiungere una superficie in <em>p4</em>.<br>&nbsp;</p>
     </div>
     <div class="div-left-space">
         <div class="container">
@@ -128,21 +124,21 @@
     <div class="div-left-space">
         <p>Nella funzione <strong>distanceField</strong> utilizzata nell'algoritmo visto in precedenza, sono raggruppate le SDF dei frattali che si possono rappresentare con questa applicazione.<br></p>
     </div>
-    <hr style="background: #ff0000;">
+    <hr>
     <div class="div-left-space">
-        <h2 class="text-center">Frattali 3D<br></h2>
+        <h2 class="text-center" id="fractals">Frattali 3D<br></h2>
         <p>Cos'è un frattale? Un <strong>frattale</strong> è un oggetto geometrico dotato di omotetia interna: si ripete nella sua forma allo stesso modo su scale diverse, e dunque ingrandendo una qualunque sua parte si ottiene una figura simile all'originale.
             <br>C'è una differenza sostanziale tra un oggetto geometrico euclideo ed un frattale:</p><ul>
     <li>Un oggetto euclideo si costruisce generalmente utilizzando una funzione sul piano cartesiano.</li>
     <li>Un oggetto frattale si basa su un algoritmo, quindi un metodo che deve essere utilizzato per disegnare l&#39;oggetto.</li>
 </ul>
         <p>L'algoritmo non è mai applicato una volta sola, ma è iterato un numero di volte teoricamente infinito; infatti ad ogni iterazione l'oggetto si avvicina sempre di più al risultato finale (per approssimazione) e dopo un certo numero di iterazioni
-            l'occhio umano non riesce più a distinguere le modifche <strong>O</strong> l'hardware di un computer non è più in grado di migliorare ulteriormente il disegno. <br><br>I frattali possono essere definiti con delle SDF e quindi essere rappresentati
-            con la tecnica del RayMarching.</p>
+            l'occhio umano non riesce più a distinguere le modifche <strong>oppure&nbsp;</strong>l'hardware di un computer non è più in grado di migliorare ulteriormente il disegno. <br><br>I frattali possono essere definiti con delle SDF e quindi essere
+            rappresentati con la tecnica del RayMarching.</p>
     </div>
     <hr>
     <div class="div-left-space">
-        <h3 class="text-center">Tetraedro di Sierpinski</h3>
+        <h3 class="text-center" id="tetrahedron">Tetraedro di Sierpinski</h3>
         <p>Il&nbsp;triangolo&nbsp;di&nbsp;Sierpinski&nbsp;è&nbsp;un&nbsp;frattale&nbsp;basato&nbsp;su&nbsp;un&nbsp;triangolo&nbsp;equilatero,&nbsp;creato&nbsp;dividendolo&nbsp;in&nbsp;4&nbsp;triangoli&nbsp;più&nbsp;piccoli,&nbsp;rimuovendo&nbsp;il&nbsp;triangolo&nbsp;centrale&nbsp;e&nbsp;ripetendo&nbsp;i&nbsp;passi&nbsp;sui&nbsp;triangoli&nbsp;rimanenti.<br>Applicando&nbsp;questi&nbsp;passi&nbsp;nello&nbsp;spazio&nbsp;3D&nbsp;si&nbsp;viene&nbsp;a&nbsp;creare&nbsp;un&nbsp;tetraedro&nbsp;formato&nbsp;da&nbsp;4&nbsp;tetraedri&nbsp;minori&nbsp;con&nbsp;uno&nbsp;spazio&nbsp;vuoto&nbsp;al&nbsp;centro.<br><br>Nelle
             figure è possibile vedere un esempio della creazione del triangolo di Sierpinski e un estrapolato dell'applicazione del tetraedro.</p>
     </div>
@@ -181,7 +177,7 @@
     </div>
     <hr>
     <div class="div-left-space">
-        <h3 class="text-center">Paxis</h3>
+        <h3 class="text-center" id="paxis">Paxis</h3>
     </div>
     <div>
         <div class="container">
@@ -213,8 +209,9 @@
         <p>La creazione di 4 frattali distinti dipende da due funzioni simili che usano come parametro una posizione <em>p</em>:<br><br>
             <picture><img class="img-fluid center" src="assets/img/theory/code/paxisCode1.png"></picture>
         </p>
-        <p>Le due funzioni <strong>paxis </strong>ricevono come parametro in ingresso una vettore&nbsp;<em>p</em>, ne prendono il vettore assoluto e restituiscono il prodotto tra la normalizzazione di <em>p</em>&nbsp;con il segno e il massimo tra, un vettore
-            di zeri e la normalizzazione del vettore assoluto meno, il <strong>massimo </strong>in un caso e il <strong>minimo </strong>nell'altro, il vettore assoluto riordinato in due modi distinti.&nbsp;</p>
+        <p>Le due funzioni <strong>paxis </strong>ricevono come parametro in ingresso un vettore&nbsp;<em>p</em>, ne prendono il vettore assoluto <em>a</em> (le cui coordinate sono i valori assoluti delle coordinate di <em>p</em>) e restituiscono il prodotto
+            scalare tra la normalizzazione di <em>p</em>&nbsp;e il massimo tra i moduli di un vettore di zeri la normalizzazione del vettore <em>a</em>&nbsp;meno, il <strong>massimo </strong>in un caso e il <strong>minimo </strong>nell'altro, tra i moduli
+            del vettore assoluto riordinato in due modi distinti.&nbsp;</p>
     </div>
     <div>
         <div class="container">
@@ -229,7 +226,7 @@
     </div>
     <hr>
     <div class="div-left-space">
-        <h3 class="text-center">Mandelbulb 3D</h3>
+        <h3 class="text-center" id="mandelbulb">Mandelbulb 3D</h3>
         <p>L'insieme&nbsp;di&nbsp;Mandelbrot&nbsp;è&nbsp;l'insieme&nbsp;dei&nbsp;numeri&nbsp;complessi&nbsp;<em>c</em>&nbsp;tali&nbsp;per&nbsp;cui&nbsp;la&nbsp;successione di seguito è&nbsp;limitata.<br>
             <picture><img class="img-thumbnail img-fluid center" src="assets/img/theory/Math/brot.png"></picture>
         </p>
@@ -278,7 +275,7 @@
     </div>
     <hr>
     <div class="div-left-space">
-        <h3 class="text-center">Spugna di Menger</h3>
+        <h3 class="text-center" id="sponge">Spugna di Menger</h3>
         <p>La <strong>Spugna di Menger</strong> è una curva frattale, generalizzazione tridimensionale dell'<a href="https://en.wikipedia.org/wiki/Cantor_set">insieme monodimensionale di Cantor</a> e del <a href="https://en.wikipedia.org/wiki/Sierpi%C5%84ski_carpet">tappeto bidimensionale di Sierpinski</a>.</p>
     </div>
     <div>
@@ -325,7 +322,7 @@
     </div>
     <hr>
     <div class="div-left-space">
-        <h3 class="text-center">MandelBox</h3>
+        <h3 class="text-center" id="mandelbox">MandelBox</h3>
         <p>Il <strong>MandelBox</strong>&nbsp;è un frattale di forma scatolare, definito in modo similare all'insieme di Mandelbrot, ma a differenza di esso può essere esteso ad un numero infinito di dimensioni.<br><br>
             <picture><img class="img-thumbnail img-fluid center" src="assets/img/theory/Fractals/box.png"></picture>
         </p>
