@@ -27,7 +27,7 @@
                 <ul class="nav navbar-nav ml-auto">
                     <li class="nav-item"><a class="nav-link active" href="#">Theory</a></li>
                     <li class="nav-item"><a class="nav-link" href="guide.html">Guide</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Fractals/fractals.html">Application</a></li>
+                    <li class="nav-item"><a class="nav-link" href="fractals/fractals.html">Application</a></li>
                 </ul>
             </div>
         </div>
@@ -209,9 +209,22 @@
         <p>La creazione di 4 frattali distinti dipende da due funzioni simili che usano come parametro una posizione <em>p</em>:<br><br>
             <picture><img class="img-fluid center" src="assets/img/theory/code/paxisCode1.png"></picture>
         </p>
-        <p>Le due funzioni <strong>paxis </strong>ricevono come parametro in ingresso un vettore&nbsp;<em>p</em>, ne prendono il vettore assoluto <em>a</em> (le cui coordinate sono i valori assoluti delle coordinate di <em>p</em>) e restituiscono il prodotto
-            scalare tra la normalizzazione di <em>p</em>&nbsp;e il massimo tra i moduli di un vettore di zeri e la normalizzazione del vettore <em>a</em>&nbsp;meno, il <strong>massimo </strong>in un caso e il <strong>minimo </strong>nell'altro, tra i
-            moduli del vettore <em>a</em>&nbsp;riordinato in due modi distinti.&nbsp;</p>
+        <p>Le funzioni descritte di seguti sono utilizzate per il calcolo del frattale:
+            <picture><img class="img-thumbnail center" src="assets/img/theory/Math/vec_ops.png"></picture><br>Il procedimento è il seguente:<br></p>
+        <ol class="text-monospace">
+            <li>sia&nbsp;<em>p</em>&nbsp;il vettore in ingresso alla funzione&nbsp;<em>paxis.</em><br></li>
+            <li>si calcola <em>abs(p)</em></li>
+            <li>si calcola <em>abs(p)_1</em> e <em>abs(p)_2</em></li>
+            <li>si calcola la differenza <strong>d</strong> tra due vettori:
+                <ul>
+                    <li>per <strong>paxis</strong>:&nbsp; &nbsp;<strong>d</strong>= abs(p) - MAX(abs(p)_1, abs(p)_2 )</li>
+                    <li>per <strong>paxis2</strong>:&nbsp;&nbsp;<strong>d</strong>= abs(p) - min(abs(p)_1, abs(p)_2 )<br></li>
+                </ul>
+            </li>
+            <li>si calcola <em>fsign(d)</em></li>
+            <li>si calcola <strong><em>w</em></strong><em>= MAX(fsign(d), &lt;0, 0, 0&gt;)</em></li>
+            <li><em>RISULTATO= *(fsign(p), w)</em></li>
+        </ol>
     </div>
     <div>
         <div class="container">
